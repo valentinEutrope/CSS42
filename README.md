@@ -1,3 +1,7 @@
+# CSS42
+Framework with styled-components and bootstrap grid. No important, no stupid ninja classes.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
