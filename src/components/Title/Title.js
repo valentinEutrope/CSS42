@@ -2,94 +2,69 @@ import React from "react";
 import PropTypes from "proptypes";
 import styled from "styled-components";
 
+function titleSharedStyle(titleProps) {
+  const { color, font, weight } = titleProps;
+  return `
+  color: ${color};
+  font-family: ${font};
+  font-weight: ${weight};
+  `;
+}
+
 const Title1 = styled.h1`
-  font-size: 3rem;
-  color: ${props => props.color};
-  font-family: ${props => props.font};
-  font-weight: ${props => props.weight};
+  font-size: ${props => props.titleProps.size || "3rem"};
+  ${props => titleSharedStyle(props.titleProps)}
 `;
 
 const Title2 = styled.h2`
-  font-size: 2.5rem;
-  color: ${props => props.color};
-  font-family: ${props => props.font};
-  font-weight: ${props => props.weight};
+  font-size: ${props => props.titleProps.size || "2.5rem"}
+    ${props => titleSharedStyle(props.titleProps)};
 `;
 
 const Title3 = styled.h3`
-  font-size: 2.25rem;
-  color: ${props => props.color};
-  font-family: ${props => props.font};
-  font-weight: ${props => props.weight};
+  font-size: ${props => props.titleProps.size || "2.25rem"}
+    ${props => titleSharedStyle(props.titleProps)};
 `;
 
 const Title4 = styled.h4`
-  font-size: 2rem;
-  color: ${props => props.color};
-  font-family: ${props => props.font};
-  font-weight: ${props => props.weight};
+  font-size: ${props => props.titleProps.size || "2rem"}
+    ${props => titleSharedStyle(props.titleProps)};
 `;
 
 const Title5 = styled.h5`
-  font-size: 1.75rem;
-  color: ${props => props.color};
-  font-family: ${props => props.font};
-  font-weight: ${props => props.weight};
+  font-size: ${props => props.titleProps.size || "1.75rem"}
+    ${props => titleSharedStyle(props.titleProps)};
 `;
 
 const Title6 = styled.h6`
-  font-size: 1.5rem;
-  color: ${props => props.color};
-  font-family: ${props => props.font};
-  font-weight: ${props => props.weight};
+  font-size: ${props => props.titleProps.size || "1.5rem"}
+    ${props => titleSharedStyle(props.titleProps)};
 `;
 
-const Title = ({ size, value, font, color, weight }) => {
+const Title = ({
+  component = "h1",
+  size,
+  value,
+  font = "sans-serif",
+  color = "#111",
+  weight = 700
+}) => {
+  const titleProps = { size, font, color, weight };
   return (
     <>
-      {size === 1 && (
-        <Title1 font={font} color={color} weight={weight}>
-          {value}
-        </Title1>
-      )}
-      {size === 2 && (
-        <Title2 font={font} color={color} weight={weight}>
-          {value}
-        </Title2>
-      )}
-      {size === 3 && (
-        <Title3 font={font} color={color} weight={weight}>
-          {value}
-        </Title3>
-      )}
-      {size === 4 && (
-        <Title4 font={font} color={color} weight={weight}>
-          {value}
-        </Title4>
-      )}
-      {size === 5 && (
-        <Title5 font={font} color={color} weight={weight}>
-          {value}
-        </Title5>
-      )}
-      {size === 6 && (
-        <Title6 font={font} color={color} weight={weight}>
-          {value}
-        </Title6>
-      )}
+      {component === "h1" && <Title1 titleProps={titleProps}>{value}</Title1>}
+      {component === "h2" && <Title2 titleProps={titleProps}>{value}</Title2>}
+      {component === "h3" && <Title3 titleProps={titleProps}>{value}</Title3>}
+      {component === "h4" && <Title4 titleProps={titleProps}>{value}</Title4>}
+      {component === "h5" && <Title5 titleProps={titleProps}>{value}</Title5>}
+      {component === "h6" && <Title6 titleProps={titleProps}>{value}</Title6>}
     </>
   );
 };
 
-Title.defaultProps = {
-  font: "sans-serif",
-  color: "#111",
-  size: 2,
-  weight: 700
-};
-
 Title.propTypes = {
   size: PropTypes.number,
+  component: PropTypes.string,
   weight: PropTypes.number,
   font: PropTypes.string,
   color: PropTypes.string,

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "proptypes";
 import styled from "styled-components";
+import Highlight from "react-highlight.js";
 
 const Block = styled.div`
   padding: 1rem 2rem;
@@ -37,13 +38,13 @@ const Paragraph = styled.p`
 
 const BlockText = ({
   blocks,
-  font,
-  color,
-  weight,
+  font = "sans-serif",
+  color = "#111",
+  weight = 500,
   size,
-  bordered,
-  borderColor,
-  borderRadius,
+  bordered = true,
+  borderColor = "#6ba3d6",
+  borderRadius = ".5rem",
   blockTitle,
   blockTitleColor,
   subtitleColor
@@ -69,8 +70,8 @@ const BlockText = ({
           {blockTitle}
         </BlockTitle>
       )}
-      {blocks.map(block => (
-        <>
+      {blocks.map((block, index) => (
+        <div key={index}>
           <Subtitle
             size={size}
             font={font}
@@ -79,27 +80,22 @@ const BlockText = ({
           >
             {block.subtitle}
           </Subtitle>
-          <Paragraph size={size} font={font} color={color} weight={weight}>
-            {block.text}
-          </Paragraph>
-        </>
+          {block.isCode ? (
+            <Highlight language="javascript">
+              <code>{block.text}</code>
+            </Highlight>
+          ) : (
+            <Paragraph size={size} font={font} color={color} weight={weight}>
+              {block.text}
+            </Paragraph>
+          )}
+        </div>
       ))}
     </Block>
   );
 };
 
-BlockText.defaultProps = {
-  font: "sans-serif",
-  color: "#111",
-  size: "1rem",
-  weight: 500,
-  bordered: true,
-  borderColor: "#6ba3d6",
-  borderRadius: ".5rem"
-};
-
 BlockText.propTypes = {
-  paragraphs: PropTypes.arrayOf(PropTypes.object).isRequired,
   size: PropTypes.string,
   weight: PropTypes.number,
   font: PropTypes.string,
@@ -108,7 +104,8 @@ BlockText.propTypes = {
   borderColor: PropTypes.string,
   borderRadius: PropTypes.string,
   blockTitle: PropTypes.string,
-  blockTitleColor: PropTypes.string
+  blockTitleColor: PropTypes.string,
+  isCode: PropTypes.bool
 };
 
 export default BlockText;
