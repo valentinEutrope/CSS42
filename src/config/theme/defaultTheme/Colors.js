@@ -6,6 +6,7 @@ export const white = "#fff";
 export const black = "#02020A";
 export const grey = "#DAD6D6";
 export const dark = "#272932";
+export const link = "#23C9FF";
 export const info = "#1B998B";
 export const success = "#7DD181";
 export const danger = "#A61C3C";
@@ -18,6 +19,7 @@ export default {
   black,
   grey,
   dark,
+  link,
   info,
   success,
   danger
