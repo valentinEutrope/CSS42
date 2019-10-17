@@ -1,4 +1,4 @@
-import { LightenDarkenColor as ldc } from "lighten-darken-color";
+import Color from "color";
 import theme from "../config/theme";
 
 const {
@@ -7,22 +7,28 @@ const {
   tertiary: tertiaryColor,
   grey: greyColor,
   dark: darkColor,
+  link: linkColor,
   info: infoColor,
   success: successColor,
   danger: dangerColor
 } = theme.colors;
 
-const createDL = color => luminosity =>
-  color ? applyLuminosity(color, luminosity) : () => {};
+const createDL = color => lightenRatio =>
+  color ? applyLighten(color, lightenRatio) : () => {};
 
-const applyLuminosity = (color, luminosity) =>
-  luminosity ? ldc(color, luminosity) : color;
+const applyLighten = (color, lightenRatio) =>
+  lightenRatio
+    ? Color(color)
+        .lighten(lightenRatio)
+        .hex()
+    : color;
 
 const primary = createDL(primaryColor);
 const secondary = createDL(secondaryColor);
 const tertiary = createDL(tertiaryColor);
 const grey = createDL(greyColor);
 const dark = createDL(darkColor);
+const link = createDL(linkColor);
 const info = createDL(infoColor);
 const success = createDL(successColor);
 const danger = createDL(dangerColor);
@@ -33,6 +39,7 @@ export default {
   tertiary,
   grey,
   dark,
+  link,
   info,
   success,
   danger
