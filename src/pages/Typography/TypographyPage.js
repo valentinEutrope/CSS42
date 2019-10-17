@@ -5,7 +5,7 @@ import LabelBlock from "../../components/LabelBlock";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 
 import theme from "../../config/theme";
-import ColorsLuminosity from "../../helpers/colors";
+import colorsLighten from "../../helpers/colors";
 
 const codeTitleProps = (
   <>
@@ -75,7 +75,7 @@ const Typography = () => {
             <BlockText
               blockTitle="Use Title component"
               blockTitleColor={theme.colors.primary}
-              subtitleColor={ColorsLuminosity.info(0)}
+              subtitleColor={colorsLighten.info(0)}
               blocks={[
                 {
                   subtitle: "How to use it",
