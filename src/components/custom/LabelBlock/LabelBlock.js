@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import theme from "../../config/theme";
-
 const BlockSection = styled.div`
   margin: 0.5rem;
   background-color: ${props => props.backgroundColorBlock};

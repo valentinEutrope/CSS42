@@ -1,7 +1,7 @@
 import React from "react";
-import Title from "../../components/Title";
-import BlockText from "../../components/BlockText";
-import LabelBlock from "../../components/LabelBlock";
+import Title from "../../components/custom/Title";
+import BlockText from "../../components/custom/BlockText";
+import LabelBlock from "../../components/custom/LabelBlock";
 import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 
 import theme from "../../config/theme";
