@@ -1,19 +1,14 @@
-import React from "react";
-import Button from "../../components/base/buttons";
-import Title from "../../components/custom/Title";
-
-import theme from "../../config/theme";
+import React, { useContext } from "react";
+import Button from "../../components/base/Button";
+import { ThemeContext } from "styled-components";
 
 const Home = () => {
+  const theme = useContext(ThemeContext);
+  console.log(theme);
+
   return (
     <div className="container">
-      <Title
-        component="h1"
-        value="CSS42"
-        font={theme.fonts.defaultFont}
-        color={theme.colors.primary}
-      />
-      <Button color={theme.colors.primary}>Default button</Button>
+      <Button>Get Started</Button>
     </div>
   );
 };
